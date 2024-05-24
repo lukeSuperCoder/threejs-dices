@@ -14,5 +14,5 @@ npm install --save-dev vite
 # cannon-es
 npm install --save cannon-es
 
-##启动项目
+## 启动项目
 npx vite
