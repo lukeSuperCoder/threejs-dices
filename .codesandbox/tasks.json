@@ -1,0 +1,29 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "name": "Install Dependencies",
+      "command": "npm install --save three"
+    },
+    {
+      "name": "npm install --save-dev vite",
+      "command": "npm install --save-dev vite"
+    },
+    {
+      "name": "npm install --save cannon-es",
+      "command": "npm install --save cannon-es"
+    }
+  ],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "npx vite": {
+      "name": "npx vite",
+      "command": "npx vite",
+      "runAtStart": true,
+      "preview": {
+        "port": 5173
+      }
+    }
+  }
+}
