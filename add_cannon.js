@@ -11,11 +11,11 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// 实例化一个gui对象
-const gui = new GUI();
-//改变交互界面style属性
-gui.domElement.style.right = '0px';
-gui.domElement.style.width = '300px';
+// // 实例化一个gui对象
+// const gui = new GUI();
+// //改变交互界面style属性
+// gui.domElement.style.right = '0px';
+// gui.domElement.style.width = '300px';
 
 const option = {
     z: -24,
@@ -121,15 +121,12 @@ scene.add(planeMesh);
 // scene.add(gridHelper);
 
 
-var controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true; // 允许阻尼效果
-controls.dampingFactor = 0.25; // 阻尼系数
+// var controls = new OrbitControls(camera, renderer.domElement);
+// controls.enableDamping = true; // 允许阻尼效果
+// controls.dampingFactor = 0.25; // 阻尼系数
 
-
-//点击投掷按钮事件
 let start_throw = false;
-const event_btn = document.getElementById("throw");
-event_btn.addEventListener('click', function (event) {
+renderer.domElement.addEventListener('click', function (event) {
     start_throw = true;
     clearPoints();
     const randomEuler = Math.random()*3;
