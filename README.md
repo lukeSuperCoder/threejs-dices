@@ -1,6 +1,9 @@
 # threejs-dices
 一款基于threejs+cannonjs物理引擎的扔骰子小游戏
 
+## 预览
+https://codesandbox.io/p/github/lukeSuperCoder/threejs-dices/draft/inspiring-fire?embed=1
+
 ## 安装方法
 # three.js
 npm install --save three
