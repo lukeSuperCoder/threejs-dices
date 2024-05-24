@@ -47,11 +47,11 @@ const sphereMaterial = new CANNON.Material()//碰撞体材质
 
 //gltf模型
 const loader = new GLTFLoader();
-const gltf = await loader.loadAsync('./assets/model/dice.glb');
+const gltf = await loader.loadAsync('./assets/model/dice_model.glb');
 
 const meshModel = gltf.scene;//获取箱子网格模型
 meshModel.position.set(50,30,50);
-meshModel.scale.set(50,50,50);
+meshModel.scale.set(5,5,5);
 scene.add(meshModel);
 // 骨骼辅助显示
 const skeletonHelper = new THREE.SkeletonHelper(meshModel);
@@ -95,11 +95,9 @@ const contactMaterial = new CANNON.ContactMaterial(groundMaterial, sphereMateria
 world.addContactMaterial(contactMaterial)
 
 //光源设置
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-directionalLight.position.set(100, 60, 50);
+const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
+directionalLight.position.set(20, 100, -50);
 scene.add(directionalLight);
-const ambient = new THREE.AmbientLight(0xffffff, 0.4);
-scene.add(ambient);
 
 
 // 网格地面
@@ -176,12 +174,12 @@ function clearPoints() {
 function getUpperFace(mesh) {
     // 定义每个面的局部法线向量（手动定义）
     const localNormals = [
-        new THREE.Vector3(-1, 0, 0), // 面1
-        new THREE.Vector3(1, 0, 0),  // 面2
-        new THREE.Vector3(0, -1, 0), // 面3
-        new THREE.Vector3(0, 1, 0),  // 面4
-        new THREE.Vector3(0, 0, -1),  // 面5
-        new THREE.Vector3(0, 0, 1),  // 面6
+        new THREE.Vector3(0, 1, 0),  // 面1
+        new THREE.Vector3(0, 0, -1),  // 面2
+        new THREE.Vector3(-1, 0, 0), // 面3
+        new THREE.Vector3(1, 0, 0),  // 面4
+        new THREE.Vector3(0, 0, 1),  // 面5
+        new THREE.Vector3(0, -1, 0), // 面6
     ];
     
     let maxDot = -Infinity;
@@ -209,7 +207,7 @@ function render() {
     requestAnimationFrame(render);
     renderer.render(scene, camera);
     if (isBodyStopped(bodyModel)&&start_throw) {
-        showPoints(1);
+        showPoints();
         start_throw = false;
     }
 }
