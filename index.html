@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Hello three.js!</title>
+		<style>
+			body { margin: 0; }
+            #info {
+                position: absolute;
+                top: 10px;
+                width: 100%;
+                text-align: center;
+                z-index: 100;
+                display:block;
+                color: #FFF;
+            }
+		</style>
+	</head>
+	<body>
+        <!-- 切换不同的js文件查看 -->
+		<script type="module" src="/add_cannon.js"></script>
+        <div style="position: absolute; left: 10px;top: 10px; color: white;">
+            <button id="throw">投掷骰子</button>
+            <div id="points" style="font-size: 20px;"></div>
+        </div>
+	</body>
+</html>
