@@ -39,7 +39,7 @@ folder_rotation.add(option, 'y1', -10, 10).step(0.1);
 const world = new CANNON.World();
 // 设置物理世界重力加速度
 // world.gravity.set(0, -1000, 0); //重力加速度： 单位：m/s²
-world.gravity.set(0, -50, 0);
+world.gravity.set(0, -100, 0);
 
 
 // 物理球体
@@ -72,6 +72,32 @@ const bodyModel = new CANNON.Body({
 
 
 // world.addBody(bodyModel);
+
+//添加空气墙
+// Create air walls
+const wallShape = new CANNON.Box(new CANNON.Vec3(100, 100, 0.1));
+    
+const wall1 = new CANNON.Body({ mass: 0 });
+wall1.addShape(wallShape);
+wall1.position.set(0, 100, -100); // Back wall
+world.addBody(wall1);
+
+const wall2 = new CANNON.Body({ mass: 0 });
+wall2.addShape(wallShape);
+wall2.position.set(0, 100, 100); // Front wall
+world.addBody(wall2);
+
+const wall3 = new CANNON.Body({ mass: 0 });
+wall3.addShape(wallShape);
+wall3.quaternion.setFromEuler(0, Math.PI / 2, 0); // Rotate for side walls
+wall3.position.set(100, 100, 0); // Right wall
+world.addBody(wall3);
+
+const wall4 = new CANNON.Body({ mass: 0 });
+wall4.addShape(wallShape);
+wall4.quaternion.setFromEuler(0, Math.PI / 2, 0); // Rotate for side walls
+wall4.position.set(-100, 100, 0); // Left wall
+world.addBody(wall4);
 
 camera.position.set(42,85,21)
 camera.lookAt(0,10,0);
@@ -115,7 +141,7 @@ planeMesh.rotateX(-Math.PI / 2);
 scene.add(planeMesh);
 
 // 添加一个辅助网格地面
-// const gridHelper = new THREE.GridHelper(300, 25, 0x004444, 0x004444);
+// const gridHelper = new THREE.GridHelper(50, 50, 0x004444, 0x004444);
 // scene.add(gridHelper);
 
 
@@ -129,7 +155,7 @@ renderer.domElement.addEventListener('click', function (event) {
     clearPoints();
     const randomEuler = Math.random()*3;
     bodyModel.quaternion.setFromEuler(Math.PI / randomEuler, Math.PI / randomEuler, Math.PI / randomEuler);
-    bodyModel.position.set(50,30,50);//点击按钮，body回到下落的初始位置
+    bodyModel.position.set(0,50,0);//点击按钮，body回到下落的初始位置
     // 为物体设置初始速度（用以产生抛物线效果）
     bodyModel.velocity.set(option.x,option.y,option.z); // x, y, z 方向上的速度
     // 选中模型的第一个模型，开始下落
