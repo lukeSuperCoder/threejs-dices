@@ -11,11 +11,11 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// // 实例化一个gui对象
-// const gui = new GUI();
-// //改变交互界面style属性
-// gui.domElement.style.right = '0px';
-// gui.domElement.style.width = '300px';
+// 实例化一个gui对象
+const gui = new GUI();
+//改变交互界面style属性
+gui.domElement.style.right = '0px';
+gui.domElement.style.width = '300px';
 
 const option = {
     z: -24,
@@ -26,14 +26,14 @@ const option = {
     y1: 1,
 }
 //gui控制参数
-// const folder_position = gui.addFolder('速度方向');
-// folder_position.add(option, 'z', -100, 100);
-// folder_position.add(option, 'x', -100, 100);
-// folder_position.add(option, 'y', -100, 100);
-// const folder_rotation = gui.addFolder('角度');
-// folder_rotation.add(option, 'z1', -10, 10).step(0.1);
-// folder_rotation.add(option, 'x1', -10, 10).step(0.1);
-// folder_rotation.add(option, 'y1', -10, 10).step(0.1);
+const folder_position = gui.addFolder('速度方向');
+folder_position.add(option, 'z', -100, 100);
+folder_position.add(option, 'x', -100, 100);
+folder_position.add(option, 'y', -100, 100);
+const folder_rotation = gui.addFolder('角度');
+folder_rotation.add(option, 'z1', -10, 10).step(0.1);
+folder_rotation.add(option, 'x1', -10, 10).step(0.1);
+folder_rotation.add(option, 'y1', -10, 10).step(0.1);
 
 // CANNON.World创建物理世界对象
 const world = new CANNON.World();
@@ -89,7 +89,7 @@ world.addBody(groundBody)
 
 //设置物理世界参数
 const contactMaterial = new CANNON.ContactMaterial(groundMaterial, sphereMaterial, {
-    restitution: 0.3, //反弹恢复系数
+    restitution: 0.5, //反弹恢复系数
 })
 // 把关联的材质添加到物理世界中
 world.addContactMaterial(contactMaterial)
@@ -119,9 +119,9 @@ scene.add(planeMesh);
 // scene.add(gridHelper);
 
 
-// var controls = new OrbitControls(camera, renderer.domElement);
-// controls.enableDamping = true; // 允许阻尼效果
-// controls.dampingFactor = 0.25; // 阻尼系数
+var controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true; // 允许阻尼效果
+controls.dampingFactor = 0.25; // 阻尼系数
 
 let start_throw = false;
 renderer.domElement.addEventListener('click', function (event) {
