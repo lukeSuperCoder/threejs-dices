@@ -42,10 +42,9 @@ const world = new CANNON.World();
 world.gravity.set(0, -100, 0);
 
 
-// 物理球体
-const sphereMaterial = new CANNON.Material()//碰撞体材质
 
-//gltf模型
+
+//网格球体（gltf模型）
 const loader = new GLTFLoader();
 const gltf = await loader.loadAsync('./assets/model/dice_model.glb');
 
@@ -53,15 +52,15 @@ const meshModel = gltf.scene;//获取箱子网格模型
 meshModel.position.set(50,30,50);
 meshModel.scale.set(5,5,5);
 scene.add(meshModel);
-// 骨骼辅助显示
-const skeletonHelper = new THREE.SkeletonHelper(meshModel);
-scene.add(skeletonHelper);
+
 //包围盒计算
 const box3 = new THREE.Box3();
 box3.expandByObject(meshModel);//计算模型包围盒
 const size = new THREE.Vector3();
 box3.getSize(size);//包围盒计算箱子的尺寸
-//物理对应模型
+
+// 物理球体
+const sphereMaterial = new CANNON.Material()//碰撞体材质
 // 物理箱子
 const bodyModel = new CANNON.Body({
     mass: 0.3, // 碰撞体质量0.3kg
@@ -70,6 +69,9 @@ const bodyModel = new CANNON.Body({
     material: sphereMaterial
 });
 
+// 骨骼辅助显示
+const skeletonHelper = new THREE.SkeletonHelper(meshModel);
+scene.add(skeletonHelper);
 
 // world.addBody(bodyModel);
 
