@@ -12,10 +12,10 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // 实例化一个gui对象
-const gui = new GUI();
-//改变交互界面style属性
-gui.domElement.style.right = '0px';
-gui.domElement.style.width = '300px';
+// const gui = new GUI();
+// //改变交互界面style属性
+// gui.domElement.style.right = '0px';
+// gui.domElement.style.width = '300px';
 
 const option = {
     z: -24,
@@ -25,15 +25,15 @@ const option = {
     x1: 1,
     y1: 1,
 }
-//gui控制参数
-const folder_position = gui.addFolder('速度方向');
-folder_position.add(option, 'z', -100, 100);
-folder_position.add(option, 'x', -100, 100);
-folder_position.add(option, 'y', -100, 100);
-const folder_rotation = gui.addFolder('角度');
-folder_rotation.add(option, 'z1', -10, 10).step(0.1);
-folder_rotation.add(option, 'x1', -10, 10).step(0.1);
-folder_rotation.add(option, 'y1', -10, 10).step(0.1);
+// //gui控制参数
+// const folder_position = gui.addFolder('速度方向');
+// folder_position.add(option, 'z', -100, 100);
+// folder_position.add(option, 'x', -100, 100);
+// folder_position.add(option, 'y', -100, 100);
+// const folder_rotation = gui.addFolder('角度');
+// folder_rotation.add(option, 'z1', -10, 10).step(0.1);
+// folder_rotation.add(option, 'x1', -10, 10).step(0.1);
+// folder_rotation.add(option, 'y1', -10, 10).step(0.1);
 
 // CANNON.World创建物理世界对象
 const world = new CANNON.World();
@@ -122,7 +122,7 @@ world.addContactMaterial(contactMaterial)
 
 //光源设置
 const directionalLight = new THREE.DirectionalLight(0xffffff, 2);
-directionalLight.position.set(20, 100, -50);
+directionalLight.position.set(20, 100, 10);
 scene.add(directionalLight);
 
 
@@ -131,7 +131,7 @@ const planeGeometry = new THREE.PlaneGeometry(1000, 1000);
 const texture = new THREE.TextureLoader().load('./assets/textures/hardwood2_diffuse.jpg');
 texture.wrapS = THREE.RepeatWrapping;
 texture.wrapT = THREE.RepeatWrapping;
-texture.repeat.set(3, 3);
+texture.repeat.set(10, 10);
 const planeMaterial = new THREE.MeshLambertMaterial({
     // color:0x777777,
     map: texture,
