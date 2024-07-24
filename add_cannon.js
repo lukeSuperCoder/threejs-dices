@@ -192,6 +192,14 @@ function showPoints() {
     point.innerHTML = `点数：${res}`
 }
 
+//相机跟随物体移动
+function locateView() {
+    camera.position.x = meshModel.position.x;
+    camera.position.y = meshModel.position.y + 30;
+    camera.position.z = meshModel.position.z + 20;
+    camera.lookAt(meshModel.position)
+}
+
 function clearPoints() {
     let point = document.getElementById("points");
     point.innerHTML = ``
@@ -230,10 +238,11 @@ function render() {
     world.step(1/60);//更新物理计算
     meshModel.position.copy(bodyModel.position);  //渲染循环中，同步物理球body与网格球mesh的位置
     meshModel.quaternion.copy(bodyModel.quaternion);   //同步姿态角度
+    locateView();   //相机跟随物体移动
     requestAnimationFrame(render);
     renderer.render(scene, camera);
     if (isBodyStopped(bodyModel)&&start_throw) {
-        showPoints();
+        showPoints();   //停止运动后，显示点数
         start_throw = false;
     }
 }
